@@ -6,7 +6,7 @@ package model;
  */
 public class Chessboard {
     private Cell[][] grid;
-
+ 
     public Chessboard() {
         this.grid =
                 new Cell[Constant.CHESSBOARD_ROW_SIZE.getNum()][Constant.CHESSBOARD_COL_SIZE.getNum()];//19X19
