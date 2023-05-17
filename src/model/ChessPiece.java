@@ -8,29 +8,43 @@ public class ChessPiece {
     // Elephant? Cat? Dog? ...
     private String name;
     private int rank;
+    private boolean inRiver;
+
 
     public ChessPiece(PlayerColor owner, String name, int rank) {
         this.owner = owner;
         this.name = name;
         this.rank = rank;
+        this.inRiver = false;
     }
 
     public boolean canCapture(ChessPiece target) {
-        // TODO: Finish this method!
-        if(this.rank==1&& target.rank==8){
+        int a = this.getRank();
+        int b = target.getRank();
+        if (a == 1 && b == 8) {
             return true;
-        }
-        if(this.rank>= target.rank){
+        } else if (a >= b) {
             return true;
+        } else {
+            return false;
         }
-        return false;
+    }
+    public boolean isInRiver() {
+        return inRiver;
     }
 
+    public void setInRiver(boolean inRiver) {
+        this.inRiver = inRiver;
+    }
     public String getName() {
         return name;
     }
 
     public PlayerColor getOwner() {
         return owner;
+    }
+    public int getRank(){ return rank;}
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 }

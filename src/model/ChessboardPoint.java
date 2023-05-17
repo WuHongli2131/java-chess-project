@@ -20,6 +20,14 @@ public class ChessboardPoint {
     public int getCol() {
         return col;
     }
+    public boolean isInRiver() {
+        // iDefine the conditions for a point to be considered as a river
+        ChessboardPoint ths;
+        return (this.equals(Constant.RIVER_1) || this.equals(Constant.RIVER_2) || this.equals(Constant.RIVER_3)
+                || this.equals(Constant.RIVER_4) || this.equals(Constant.RIVER_5) || this.equals(Constant.RIVER_6)
+                || this.equals(Constant.RIVER_7) || this.equals(Constant.RIVER_8) || this.equals(Constant.RIVER_9)
+                || this.equals(Constant.RIVER_10) || this.equals(Constant.RIVER_11) || this.equals(Constant.RIVER_12));
+    }
 
     @Override
     public int hashCode() {
