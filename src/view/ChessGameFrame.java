@@ -16,7 +16,7 @@ public class ChessGameFrame extends JFrame {
 
     private ChessboardComponent chessboardComponent;
     public ChessGameFrame(int width, int height) {
-        setTitle("GoBangDemo"); //设置标题
+        setTitle("JungleChess"); //设置标题
         this.WIDTH = width;
         this.HEIGTH = height;
         this.ONE_CHESS_SIZE = (HEIGTH * 4 / 5) / 9;
@@ -30,6 +30,8 @@ public class ChessGameFrame extends JFrame {
         addChessboard();
         addLabel();
         addHelloButton();
+        addsingleButton();
+        adddoubleButton();
     }
 
     public ChessboardComponent getChessboardComponent() {
@@ -53,29 +55,46 @@ public class ChessGameFrame extends JFrame {
      * 在游戏面板中添加标签
      */
     private void addLabel() {
-        JLabel statusLabel = new JLabel("Sample label");
+        JLabel statusLabel = new JLabel("Jungle Chess");
         statusLabel.setLocation(HEIGTH, HEIGTH / 10);
         statusLabel.setSize(200, 60);
         statusLabel.setFont(new Font("Rockwell", Font.BOLD, 20));
         add(statusLabel);
     }
 
+
     /**
      * 在游戏面板中增加一个按钮，如果按下的话就会显示Hello, world!
      */
-
-    private void addHelloButton() {
-        JButton button = new JButton("Show Hello Here");
-        button.addActionListener((e) -> JOptionPane.showMessageDialog(this, "Hello, world!"));
+    private void addsingleButton() {
+        JButton button = new JButton("Start");
+        button.addActionListener((e) -> JOptionPane.showMessageDialog(this, "Hello, world!"));//开启单人游戏的方法
         button.setLocation(HEIGTH, HEIGTH / 10 + 120);
+        button.setSize(200, 60);
+        button.setFont(new Font("Rockwell", Font.BOLD, 20));
+        add(button);
+    }
+    private void adddoubleButton() {
+        JButton button = new JButton("Multiplayers");
+        button.addActionListener((e) -> JOptionPane.showMessageDialog(this, "Hello, world!"));//开启单人游戏的方法
+        button.setLocation(HEIGTH, HEIGTH / 10 + 240);
         button.setSize(200, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
         add(button);
     }
 
 
+    private void addHelloButton() {
+        JButton button = new JButton("Music");
+        button.addActionListener((e) -> JOptionPane.showMessageDialog(this, "Hello, world!"));
+        button.setLocation(HEIGTH, HEIGTH / 10 + 360);
+        button.setSize(200, 60);
+        button.setFont(new Font("Rockwell", Font.BOLD, 20));
+        add(button);
+    }
 
- /*  private void addLoadButton() {
+
+ /*  private void addLoadButton() {//这个类是用来读档的
         JButton button = new JButton("Load");
         button.setLocation(HEIGTH, HEIGTH / 10 + 240);
        button.setSize(200, 60);

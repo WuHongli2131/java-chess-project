@@ -11,7 +11,7 @@ public enum Constant {
     public static final ChessboardPoint TRAP_RED_2 = new ChessboardPoint(7, 3);
     public static final ChessboardPoint TRAP_RED_3 = new ChessboardPoint(8, 4);
 
-    public static final ChessboardPoint RIVER_1 = new ChessboardPoint(3, 1);
+    public static final ChessboardPoint RIVER_1 = new ChessboardPoint(3, 1);//河和陷阱不要声明，给个常数组就行了
     public static final ChessboardPoint RIVER_2 = new ChessboardPoint(3, 2);
     public static final ChessboardPoint RIVER_3 = new ChessboardPoint(3, 4);
     public static final ChessboardPoint RIVER_4 = new ChessboardPoint(3, 5);

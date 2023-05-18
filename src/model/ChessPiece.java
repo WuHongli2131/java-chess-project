@@ -11,6 +11,7 @@ public class ChessPiece {
     private boolean inRiver;
 
 
+
     public ChessPiece(PlayerColor owner, String name, int rank) {
         this.owner = owner;
         this.name = name;
