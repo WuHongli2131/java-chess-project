@@ -156,13 +156,14 @@ public class ChessboardComponent extends JComponent {
     @Override
     protected void processMouseEvent(MouseEvent e) {
         if (e.getID() == MouseEvent.MOUSE_PRESSED) {
-            JComponent clickedComponent = (JComponent) getComponentAt(e.getX(), e.getY());
+            JComponent clickedComponent = (JComponent)  (JComponent) getComponentAt(e.getX(), e.getY());
             if (clickedComponent.getComponentCount() == 0) {
                 System.out.print("None chess here and ");
                 gameController.onPlayerClickCell(getChessboardPoint(e.getPoint()), (CellComponent) clickedComponent);
             } else {
                 System.out.print("One chess here and ");
                 gameController.onPlayerClickChessPiece(getChessboardPoint(e.getPoint()), (ChessComponent) clickedComponent.getComponents()[0]);
+
             }
         }
     }

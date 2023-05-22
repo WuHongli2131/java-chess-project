@@ -20,13 +20,20 @@ public class ChessboardPoint {
     public int getCol() {
         return col;
     }
-    public boolean isInRiver() {
+    public static boolean isRiver(model.ChessboardPoint point) {
         // iDefine the conditions for a point to be considered as a river
-        ChessboardPoint ths;
-        return (this.equals(Constant.RIVER_1) || this.equals(Constant.RIVER_2) || this.equals(Constant.RIVER_3)
-                || this.equals(Constant.RIVER_4) || this.equals(Constant.RIVER_5) || this.equals(Constant.RIVER_6)
-                || this.equals(Constant.RIVER_7) || this.equals(Constant.RIVER_8) || this.equals(Constant.RIVER_9)
-                || this.equals(Constant.RIVER_10) || this.equals(Constant.RIVER_11) || this.equals(Constant.RIVER_12));
+        return point.equals(Constant.RIVER_1)
+                || point.equals(Constant.RIVER_2)
+                || point.equals(Constant.RIVER_3)
+                || point.equals(Constant.RIVER_4)
+                || point.equals(Constant.RIVER_5)
+                || point.equals(Constant.RIVER_6)
+                || point.equals(Constant.RIVER_7)
+                || point.equals(Constant.RIVER_8)
+                || point.equals(Constant.RIVER_9)
+                || point.equals(Constant.RIVER_10)
+                || point.equals(Constant.RIVER_11)
+                || point.equals(Constant.RIVER_12);
     }
 
     @Override
@@ -40,7 +47,7 @@ public class ChessboardPoint {
         if (obj == null) {
             return false;
         }
-        ChessboardPoint temp = (ChessboardPoint) obj;
+        model.ChessboardPoint temp = (model.ChessboardPoint) obj;
         return (temp.getRow() == this.row) && (temp.getCol() == this.col);
     }
 

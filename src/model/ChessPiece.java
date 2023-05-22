@@ -1,6 +1,5 @@
 package model;
 
-
 public class ChessPiece {
     // the owner of the chess
     private PlayerColor owner;
@@ -10,16 +9,14 @@ public class ChessPiece {
     private int rank;
     private boolean inRiver;
 
-
-
     public ChessPiece(PlayerColor owner, String name, int rank) {
         this.owner = owner;
         this.name = name;
         this.rank = rank;
-        this.inRiver = false;
+        this.inRiver = false; // 默认情况下，棋子不能进入河流
     }
 
-    public boolean canCapture(ChessPiece target) {
+    public boolean canCapture(model.ChessPiece target) {
         int a = this.getRank();
         int b = target.getRank();
         if (a == 1 && b == 8) {
@@ -30,6 +27,7 @@ public class ChessPiece {
             return false;
         }
     }
+
     public boolean isInRiver() {
         return inRiver;
     }
@@ -37,6 +35,7 @@ public class ChessPiece {
     public void setInRiver(boolean inRiver) {
         this.inRiver = inRiver;
     }
+
     public String getName() {
         return name;
     }
@@ -44,7 +43,11 @@ public class ChessPiece {
     public PlayerColor getOwner() {
         return owner;
     }
-    public int getRank(){ return rank;}
+
+    public int getRank() {
+        return rank;
+    }
+
     public void setRank(int rank) {
         this.rank = rank;
     }

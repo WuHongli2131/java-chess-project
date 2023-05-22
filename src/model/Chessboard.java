@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class store the real chess information.
@@ -18,7 +19,7 @@ public class Chessboard {
         initGrid();
         initPieces();
         initDenAndTraps(); // 添加该行代码进行巢穴和陷阱的初始化
-        initRivers();
+
     }
 
     private void initGrid() {
@@ -46,6 +47,9 @@ public class Chessboard {
         grid[6][4].setPiece(new ChessPiece(PlayerColor.RED, "Leopard",5));
         grid[2][0].setPiece(new ChessPiece(PlayerColor.BLUE, "Rat",1));
         grid[6][6].setPiece(new ChessPiece(PlayerColor.RED, "Rat",1));
+        grid[2][0].getPiece().setInRiver(true);
+        grid[6][6].getPiece().setInRiver(true);
+        // 设置老鼠可以进入河里
     }
     private void initDenAndTraps() {
         grid[Constant.DEN_BLUE.getRow()][Constant.DEN_BLUE.getCol()].setPiece(new ChessPiece(PlayerColor.BLUE, "Den", 0));
@@ -59,23 +63,24 @@ public class Chessboard {
         grid[Constant.TRAP_RED_2.getRow()][Constant.TRAP_RED_2.getCol()].setPiece(new ChessPiece(PlayerColor.RED, "Trap", 0));
         grid[Constant.TRAP_RED_3.getRow()][Constant.TRAP_RED_3.getCol()].setPiece(new ChessPiece(PlayerColor.RED, "Trap", 0));
     }
-    private void initRivers() {
-        ChessPiece riverPiece = new ChessPiece(PlayerColor.GREEN, "River", 0);
-        grid[Constant.RIVER_1.getRow()][Constant.RIVER_1.getCol()].setPiece(riverPiece);
-        grid[Constant.RIVER_2.getRow()][Constant.RIVER_2.getCol()].setPiece(riverPiece);
-        grid[Constant.RIVER_3.getRow()][Constant.RIVER_3.getCol()].setPiece(riverPiece);
-        grid[Constant.RIVER_4.getRow()][Constant.RIVER_4.getCol()].setPiece(riverPiece);
-        grid[Constant.RIVER_5.getRow()][Constant.RIVER_5.getCol()].setPiece(riverPiece);
-        grid[Constant.RIVER_6.getRow()][Constant.RIVER_6.getCol()].setPiece(riverPiece);
-        grid[Constant.RIVER_7.getRow()][Constant.RIVER_7.getCol()].setPiece(riverPiece);
-        grid[Constant.RIVER_8.getRow()][Constant.RIVER_8.getCol()].setPiece(riverPiece);
-        grid[Constant.RIVER_9.getRow()][Constant.RIVER_9.getCol()].setPiece(riverPiece);
-        grid[Constant.RIVER_10.getRow()][Constant.RIVER_10.getCol()].setPiece(riverPiece);
-        grid[Constant.RIVER_11.getRow()][Constant.RIVER_11.getCol()].setPiece(riverPiece);
-        grid[Constant.RIVER_12.getRow()][Constant.RIVER_12.getCol()].setPiece(riverPiece);
-    }
+//   private void initRivers() {
+//        ChessPiece riverPiece = new ChessPiece(PlayerColor.GREEN, "River", 0);
+//        grid[Constant.RIVER_1.getRow()][Constant.RIVER_1.getCol()].setPiece(riverPiece);
+//        grid[Constant.RIVER_2.getRow()][Constant.RIVER_2.getCol()].setPiece(riverPiece);
+//        grid[Constant.RIVER_3.getRow()][Constant.RIVER_3.getCol()].setPiece(riverPiece);
+//        grid[Constant.RIVER_4.getRow()][Constant.RIVER_4.getCol()].setPiece(riverPiece);
+//        grid[Constant.RIVER_5.getRow()][Constant.RIVER_5.getCol()].setPiece(riverPiece);
+//        grid[Constant.RIVER_6.getRow()][Constant.RIVER_6.getCol()].setPiece(riverPiece);
+//        grid[Constant.RIVER_7.getRow()][Constant.RIVER_7.getCol()].setPiece(riverPiece);
+//        grid[Constant.RIVER_8.getRow()][Constant.RIVER_8.getCol()].setPiece(riverPiece);
+//        grid[Constant.RIVER_9.getRow()][Constant.RIVER_9.getCol()].setPiece(riverPiece);
+//        grid[Constant.RIVER_10.getRow()][Constant.RIVER_10.getCol()].setPiece(riverPiece);
+//        grid[Constant.RIVER_11.getRow()][Constant.RIVER_11.getCol()].setPiece(riverPiece);
+//        grid[Constant.RIVER_12.getRow()][Constant.RIVER_12.getCol()].setPiece(riverPiece);
+//    }
 
-    private ChessPiece getChessPieceAt(ChessboardPoint point) {
+
+    public ChessPiece getChessPieceAt(ChessboardPoint point) {
         return getGridAt(point).getPiece();
     }
 
@@ -87,14 +92,14 @@ public class Chessboard {
         return Math.abs(src.getRow() - dest.getRow()) + Math.abs(src.getCol() - dest.getCol());
     }
 
-    private ChessPiece removeChessPiece(ChessboardPoint point) {
+    public ChessPiece removeChessPiece(ChessboardPoint point) {
         ChessPiece chessPiece = getChessPieceAt(point);
         getGridAt(point).removePiece();
         return chessPiece;
     }
 
     private void setChessPiece(ChessboardPoint point, ChessPiece chessPiece) {
-        getGridAt(point).setPiece(chessPiece);
+        getGridAt(point).setPiece(chessPiece);//将第二个点覆盖到第一个点
     }
 
     public void moveChessPiece(ChessboardPoint src, ChessboardPoint dest) {
@@ -111,38 +116,31 @@ public class Chessboard {
                     movingPiece.setRank(0);
                     this.setChessPiece(dest, movingPiece);
                 }
-            } else if (dest.isInRiver()) {
-                if (movingPiece.getRank() == 1) { // Assuming rank 1 represents the rat
-                    movingPiece.setInRiver(true);
-                    this.setChessPiece(dest, movingPiece);
-                } else {
-                    // If the chess piece is not a rat, it cannot move to the river
-                    return;
-                }
-            } else if (src.isInRiver() && movingPiece.getRank() == 1 && capturedPiece != null && capturedPiece.getRank() == 1) {
-                // Two rats in the river can capture each other
-                this.setChessPiece(dest, movingPiece);
-            } else if (capturedPiece != null && !src.isInRiver() && dest.isInRiver()) {
+            } else if (capturedPiece != null && !ChessboardPoint.isRiver(src) && ChessboardPoint.isRiver(dest)) {
                 // Cannot capture a piece from outside the river when moving into the river
                 return;
-            } else if (movingPiece.getRank() == 6 || movingPiece.getRank() == 7) {
+            }
+            else if (movingPiece.getRank() == 6 || movingPiece.getRank() == 7) {
                 // Check if the moving piece is a lion or tiger
                 if (isJumpAcrossRiver(src, dest)) {
                     if (isRatInInterveningSquares(src, dest)) {
                         // Jumping move is blocked if a rat is present
                         return;
-                    } else if (capturedPiece != null && capturedPiece.getRank() <= movingPiece.getRank()) {
-                        // Capture the enemy piece if it has equal or lower rank
-                        this.setChessPiece(dest, movingPiece);
                     } else {
-                        // Invalid jumping move if the destination square does not contain an enemy piece
-                        return;
+                        // Perform the jumping move
+                        if (capturedPiece != null && capturedPiece.getRank() <= movingPiece.getRank()) {
+                            // Capture the enemy piece if it has equal or lower rank
+                            this.removeChessPiece(dest);
+                            this.setChessPiece(dest, movingPiece);
+                        }else{
+                            this.setChessPiece(dest, movingPiece);
+                        }
+
                     }
-                } else {
-                    // Invalid move if it's not a jump across the river
-                    return;
-                }
-            } else {
+                }else{ this.setChessPiece(dest, movingPiece);}
+            }
+
+            else {
                 this.setChessPiece(dest, movingPiece);
             }
 
@@ -154,6 +152,7 @@ public class Chessboard {
             this.history.add(step);
         }
     }
+
 
 
     public void captureChessPiece(ChessboardPoint src, ChessboardPoint dest) {
@@ -194,12 +193,31 @@ public class Chessboard {
         if (isDen(dest) || isTrap(dest)) {
             return false;
         }
-        return calculateDistance(src, dest) == 1;
+
+        ChessPiece movingPiece = getChessPieceAt(src);
+        if (ChessboardPoint.isRiver(dest) && !movingPiece.isInRiver()) {
+            return false; // 如果目标位置是河里，但棋子不能进入河里，则返回false
+        }
+
+        int distance = calculateDistance(src, dest);
+
+        if (movingPiece.getRank() == 6 || movingPiece.getRank() == 7) {
+            // Check if the moving piece is a lion or tiger
+            if (isJumpAcrossRiver(src, dest)) {
+                if (isRatInInterveningSquares(src, dest)) {
+                    return false; // Jumping move is blocked if a rat is present
+                } else {
+                    return true; // Valid jumping move
+                }
+            } else {
+                return distance == 1; // Only allow distance of 1 when not jumping across the river
+            }
+        } else {
+            return distance == 1;
+        }
     }
 
-
     public boolean isValidCapture(ChessboardPoint src, ChessboardPoint dest) {
-        // TODO:Fix this method
         ChessPiece srcPiece = getChessPieceAt(src);
         ChessPiece destPiece = getChessPieceAt(dest);
 
@@ -207,12 +225,15 @@ public class Chessboard {
             return false;
         }
 
-        int distance = calculateDistance(src, dest);
-        if (distance != 1) {
-            return false;
+        if (isJumpAcrossRiver(src, dest)) {
+            if (isRatInInterveningSquares(src, dest)) {
+                return false; // If there is a rat in the intervening squares, return false
+            }
+            return destPiece.getRank() <= srcPiece.getRank(); // Can capture if the destination piece has equal or lower rank
         }
 
-        return true;}
+        return calculateDistance(src, dest) == 1;
+    }
     private boolean isDen(ChessboardPoint point) {
         return point.equals(Constant.DEN_BLUE) || point.equals(Constant.DEN_RED);
     }
@@ -264,7 +285,7 @@ public class Chessboard {
             int endRow = Math.max(srcRow, destRow);
 
             // Check if the move crosses the river
-            if (startRow < 5 && endRow > 4) {
+            if (startRow <= 4 && endRow >= 5) {
                 return true; // Jumping across the river vertically
             }
         }
@@ -274,13 +295,27 @@ public class Chessboard {
             int endCol = Math.max(srcCol, destCol);
 
             // Check if the move crosses the river
-            if (startCol < 3 && endCol > 2) {
+            if (startCol <= 2 && endCol >= 3) {
                 return true; // Jumping across the river horizontally
             }
         }
 
         return false; // Not jumping across the river
     }
+
+    /*private ChessPiece[][] chessboard;
+    public List<ChessboardPoint> getChessPiecesByOwner(PlayerColor owner) {
+        List<ChessboardPoint> chessPieces = new ArrayList<>();
+        for (int row = 0; row < Constant.CHESSBOARD_ROW_SIZE.getNum(); row++) {
+            for (int col = 0; col < Constant.CHESSBOARD_COL_SIZE.getNum(); col++) {
+                ChessPiece chessPiece = chessboard[row][col];
+                if (chessPiece != null && chessPiece.getOwner() == owner) {
+                    chessPieces.add(new ChessboardPoint(row, col));
+                }
+            }
+        }
+        return chessPieces;
+    }*/
 
 
     public ArrayList<String> getHistory() {
