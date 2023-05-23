@@ -29,8 +29,17 @@ public class Chessboard {
             }
         }
     }
+    public void removeAllPieeces(){
+        for(int i=0;i<Constant.CHESSBOARD_ROW_SIZE.getNum();i++){
+            for(int j=0;j<Constant.CHESSBOARD_COL_SIZE.getNum();j++){
+                if(grid[i][j].getPiece()!=null){
+                    grid[i][j].setPiece(null);
+                }
+            }
+        }
+    }
 
-    private void initPieces() {
+    public void initPieces() {
         grid[0][0].setPiece(new ChessPiece(PlayerColor.BLUE, "Lion",7));
         grid[8][6].setPiece(new ChessPiece(PlayerColor.RED, "Lion",7));
         grid[0][6].setPiece(new ChessPiece(PlayerColor.BLUE, "Tiger",6));
@@ -50,6 +59,49 @@ public class Chessboard {
         grid[2][0].getPiece().setInRiver(true);
         grid[6][6].getPiece().setInRiver(true);
         // 设置老鼠可以进入河里
+    }
+    public void intiatePieces(List<String> lines){
+        for (int i = 0; i < Constant.CHESSBOARD_ROW_SIZE.getNum(); i++) {
+            for (int j = 0; j < Constant.CHESSBOARD_COL_SIZE.getNum(); j++) {
+                if(lines.get(i).charAt(j)=='1'){
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Rat",1));
+                    grid[i][j].getPiece().setInRiver(true);
+                } else if (lines.get(i).charAt(j)=='a') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Rat",1));
+                    grid[i][j].getPiece().setInRiver(true);
+                } else if (lines.get(i).charAt(j)=='2') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Cat",2));
+                } else if (lines.get(i).charAt(j)=='b') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Cat",2));
+                }else if (lines.get(i).charAt(j)=='3') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Dog",3));
+                } else if (lines.get(i).charAt(j)=='c') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Dog",3));
+                }else if (lines.get(i).charAt(j)=='4') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Wolf",4));
+                } else if (lines.get(i).charAt(j)=='d') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Wolf",4));
+                }else if (lines.get(i).charAt(j)=='5') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Leopard",5));
+                } else if (lines.get(i).charAt(j)=='e') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Leopard",5));
+                }else if (lines.get(i).charAt(j)=='6') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Tiger",6));
+                } else if (lines.get(i).charAt(j)=='f') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Tiger",6));
+                }else if (lines.get(i).charAt(j)=='7') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Lion",7));
+                } else if (lines.get(i).charAt(j)=='g') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Lion",7));
+                }else if (lines.get(i).charAt(j)=='8') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Elephant",8));
+                } else if (lines.get(i).charAt(j)=='h') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Elephant",8));
+                }
+            }
+
+        }
+
     }
     private void initDenAndTraps() {
         grid[Constant.DEN_BLUE.getRow()][Constant.DEN_BLUE.getCol()].setPiece(new ChessPiece(PlayerColor.BLUE, "Den", 0));

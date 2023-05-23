@@ -1,4 +1,5 @@
 package view;
+
 import controller.GameController;
 
 import javax.swing.*;
@@ -9,10 +10,12 @@ import java.awt.*;
  */
 public class ChessGameFrame extends JFrame {
     //    public final Dimension FRAME_SIZE ;
+
     private final int WIDTH;
     private final int HEIGTH;
 
     private final int ONE_CHESS_SIZE;
+    private GameController controller;
 
     private ChessboardComponent chessboardComponent;
     public ChessGameFrame(int width, int height) {
@@ -20,18 +23,20 @@ public class ChessGameFrame extends JFrame {
         this.WIDTH = width;
         this.HEIGTH = height;
         this.ONE_CHESS_SIZE = (HEIGTH * 4 / 5) / 9;
-
         setSize(WIDTH, HEIGTH);
         setLocationRelativeTo(null); // Center the window.
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //设置程序关闭按键，如果点击右上方的叉就游戏全部关闭了
         setLayout(null);
+        ImageIcon img=new ImageIcon("C:\\Users\\explorer\\Desktop\\新建文件夹\\R-C(3).jpg");
+        JLabel label = new JLabel(img);
+        label.setBounds(0, 0, width, height);
 
 
         addChessboard();
         addLabel();
         addHelloButton();
         addsingleButton();
-        adddoubleButton();
+        addLoadButton();
     }
 
     public ChessboardComponent getChessboardComponent() {
@@ -41,6 +46,7 @@ public class ChessGameFrame extends JFrame {
     public void setChessboardComponent(ChessboardComponent chessboardComponent) {
         this.chessboardComponent = chessboardComponent;
     }
+
 
     /**
      * 在游戏面板中添加棋盘
@@ -61,21 +67,33 @@ public class ChessGameFrame extends JFrame {
         statusLabel.setFont(new Font("Rockwell", Font.BOLD, 20));
         add(statusLabel);
     }
+    private void addBackGroundLabel() {
+        Icon icon=new ImageIcon("view/img.jpg");
+
+        JLabel statusLabel = new JLabel("1",icon,JLabel.CENTER);
+        statusLabel.setLocation(0, 0);
+        statusLabel.setSize(200, 60);
+        add(statusLabel);
+    }
+
 
 
     /**
      * 在游戏面板中增加一个按钮，如果按下的话就会显示Hello, world!
      */
     private void addsingleButton() {
-        JButton button = new JButton("Start");
-        button.addActionListener((e) -> JOptionPane.showMessageDialog(this, "Hello, world!"));//开启单人游戏的方法
+        JButton button = new JButton("Restart");
+        button.addActionListener((e) -> {
+          //开启单人游戏的方法
+            controller.restartGame();
+                });
         button.setLocation(HEIGTH, HEIGTH / 10 + 120);
         button.setSize(200, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
         add(button);
     }
     private void adddoubleButton() {
-        JButton button = new JButton("Multiplayers");
+        JButton button = new JButton("muti");
         button.addActionListener((e) -> JOptionPane.showMessageDialog(this, "Hello, world!"));//开启单人游戏的方法
         button.setLocation(HEIGTH, HEIGTH / 10 + 240);
         button.setSize(200, 60);
@@ -93,8 +111,12 @@ public class ChessGameFrame extends JFrame {
         add(button);
     }
 
+    public void setGameController(GameController gameController) {
+        this.controller=gameController;
+    }
 
- /*  private void addLoadButton() {//这个类是用来读档的
+
+   private void addLoadButton() {//这个类是用来读档的
         JButton button = new JButton("Load");
         button.setLocation(HEIGTH, HEIGTH / 10 + 240);
        button.setSize(200, 60);
@@ -104,8 +126,9 @@ public class ChessGameFrame extends JFrame {
         button.addActionListener(e -> {
             System.out.println("Click load");
             String path = JOptionPane.showInputDialog(this,"Input Path here");
-            gameController.loadGameFromFile(path);
+            System.out.println(path);
+            controller.loadGameFromFile(path);
         });
     }
-*/
+
 }

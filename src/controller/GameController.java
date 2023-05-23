@@ -1,6 +1,10 @@
 package controller;
 
-
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.AbstractSet;
+import java.util.List;
 import listener.GameListener;
 import model.Constant;
 import model.PlayerColor;
@@ -9,6 +13,8 @@ import model.ChessboardPoint;
 import view.CellComponent;
 import view.ChessComponent;
 import view.ChessboardComponent;
+
+import javax.imageio.IIOException;
 
 /**
  * Controller is the connection between model and view,
@@ -85,5 +91,32 @@ public class GameController implements GameListener {
             component.repaint();
         }
         // TODO: Implement capture function
+    }
+
+    public void restartGame() {
+        model.removeAllPieeces();
+        model.initPieces();
+        view.removeAllPieces();
+        view.initiateChessComponent(model);
+        view.repaint();
+    }
+
+    public void loadGameFromFile(String path){
+        try {
+            List<String> loading= Files.readAllLines(Path.of(path));
+            for(String s:loading){
+                System.out.println(s);
+            }
+            model.removeAllPieeces();
+            model.intiatePieces(loading);
+            view.removeAllPieces();
+            view.initiateChessComponent(model);
+            view.repaint();
+        }catch(IOException e){
+            throw new RuntimeException(e);
+
+        }
+
+
     }
 }
