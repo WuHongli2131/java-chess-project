@@ -1,5 +1,7 @@
 package model;
 
+import controller.GameController;
+import view.ChessGameFrame;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +32,7 @@ public class Chessboard {
         }
     }
 
-    public void removeAllPieeces() {
+    public void removeAllPieces() {
         for (int i = 0; i < Constant.CHESSBOARD_ROW_SIZE.getNum(); i++) {
             for (int j = 0; j < Constant.CHESSBOARD_COL_SIZE.getNum(); j++) {
                 if (grid[i][j].getPiece() != null) {
@@ -162,7 +164,6 @@ public class Chessboard {
             throw new IllegalArgumentException("Illegal chess move!");
         } else {
             ChessPiece movingPiece = this.getChessPiece(src);
-
             if (this.isTrap(dest)) {
                 // Handle moving into a trap
                 if ((movingPiece.getOwner() == PlayerColor.BLUE && isBlueTrap(dest)) || (movingPiece.getOwner() == PlayerColor.RED && isRedTrap(dest))) {
@@ -196,6 +197,7 @@ public class Chessboard {
             }
 
             String step = movingPiece.getName() + " from " + src.toString() + " to " + dest.toString();
+
             this.history.add(step);
             removeChessPiece(src);
         }
@@ -208,7 +210,6 @@ public class Chessboard {
         }
         ChessPiece srcPiece = getChessPieceAt(src);
         ChessPiece destPiece = getChessPieceAt(dest);
-
         if (srcPiece.canCapture(destPiece)) {
             removeChessPiece(dest);
             ChessPiece capturedPiece = removeChessPiece(src);

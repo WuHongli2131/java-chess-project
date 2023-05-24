@@ -11,6 +11,7 @@ import listener.GameListener;
 import model.*;
 import view.CellComponent;
 import view.ChessComponent;
+import view.ChessGameFrame;
 import view.ChessboardComponent;
 
 import javax.imageio.IIOException;
@@ -31,11 +32,14 @@ public class GameController implements GameListener {
 
     // Record whether there is a selected piece before
     private ChessboardPoint selectedPoint;
+    public static JLabel turnlabel= new JLabel();
+    public int turn;
 
     public GameController(ChessboardComponent view, Chessboard model) {
         this.view = view;
         this.model = model;
         this.currentPlayer = PlayerColor.BLUE;
+        this.turn=0;
 
         view.registerController(this);
         initialize();
@@ -54,6 +58,16 @@ public class GameController implements GameListener {
     // after a valid move swap the player
     private void swapColor() {
         currentPlayer = currentPlayer == PlayerColor.BLUE ? PlayerColor.RED : PlayerColor.BLUE;
+        this.turn+=1;
+        System.out.println(turn);
+       ChessGameFrame.turnlabel.setText("Jungle Chess Turn:"+ (this.turn/2+1));
+        if(this.turn%2==1) {
+            ChessGameFrame.colorlabel.setText("Red Turn");
+        }else{
+           ChessGameFrame.colorlabel.setText("Blue Turn");
+        }
+        ChessGameFrame.colorlabel.repaint();
+        ChessGameFrame.turnlabel.repaint();
     }
 
     private boolean win() {
@@ -152,7 +166,7 @@ public class GameController implements GameListener {
     }
 
     public void restartGame() {
-        model.removeAllPieeces();
+        model.removeAllPieces();
         model.initPieces();
         selectedPoint = null;
         view.removeAllPieces();
@@ -166,7 +180,7 @@ public class GameController implements GameListener {
             for (String s : loading) {
                 System.out.println(s);
             }
-            model.removeAllPieeces();
+            model.removeAllPieces();
             model.intiatePieces(loading);
             view.removeAllPieces();
             view.initiateChessComponent(model);

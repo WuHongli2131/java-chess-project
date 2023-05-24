@@ -1,6 +1,7 @@
 package model;
 
 public enum Constant {
+
     CHESSBOARD_ROW_SIZE(9),CHESSBOARD_COL_SIZE(7);
     public static final ChessboardPoint DEN_BLUE = new ChessboardPoint(0, 3);
     public static final ChessboardPoint DEN_RED = new ChessboardPoint(8, 3);
@@ -24,6 +25,7 @@ public enum Constant {
     public static final ChessboardPoint RIVER_11 = new ChessboardPoint(5, 4);
     public static final ChessboardPoint RIVER_12 = new ChessboardPoint(5, 5);
     private final int num;
+
     Constant(int num){
         this.num = num;
     }

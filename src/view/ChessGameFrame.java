@@ -1,6 +1,9 @@
 package view;
 
 import controller.GameController;
+import model.Chessboard;
+import model.Constant;
+import model.PlayerColor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +21,8 @@ public class ChessGameFrame extends JFrame {
     private GameController controller;
 
     private ChessboardComponent chessboardComponent;
+    public static JLabel turnlabel= new JLabel();
+    public static JLabel colorlabel=new JLabel();
     public ChessGameFrame(int width, int height) {
         setTitle("JungleChess"); //设置标题
         this.WIDTH = width;
@@ -30,10 +35,7 @@ public class ChessGameFrame extends JFrame {
         ImageIcon img=new ImageIcon("C:\\Users\\explorer\\Desktop\\新建文件夹\\R-C(3).jpg");
         JLabel label = new JLabel(img);
         label.setBounds(0, 0, width, height);
-
-
         addChessboard();
-        addLabel();
         addHelloButton();
         addsingleButton();
         addLoadButton();
@@ -60,19 +62,34 @@ public class ChessGameFrame extends JFrame {
     /**
      * 在游戏面板中添加标签
      */
-    private void addLabel() {
-        JLabel statusLabel = new JLabel("Jungle Chess");
-        statusLabel.setLocation(HEIGTH, HEIGTH / 10);
-        statusLabel.setSize(200, 60);
-        statusLabel.setFont(new Font("Rockwell", Font.BOLD, 20));
-        add(statusLabel);
+    private void addLabel() {//有bug
+        turnlabel = new JLabel("Jungle Chess Turn:"+ (this.controller.turn/2+1));
+        turnlabel.setLocation(HEIGTH, HEIGTH / 10);
+        turnlabel.setSize(400, 60);
+        turnlabel.setFont(new Font("Rockwell", Font.BOLD, 20));
+        add(turnlabel);
+    }
+
+
+
+
+       private void addPlayerLabel() {//有bug
+        colorlabel = new JLabel();
+        if(this.controller.turn%2==1) {
+            colorlabel = new JLabel("Blue Turn" );
+        }else{
+            colorlabel = new JLabel("Red Turn" );
+        }
+            colorlabel.setLocation(HEIGTH, HEIGTH / 10 - 60);
+            colorlabel.setSize(200, 60);
+            colorlabel.setFont(new Font("Rockwell", Font.BOLD, 20));
+            add(colorlabel);
     }
     private void addBackGroundLabel() {
         Icon icon=new ImageIcon("view/img.jpg");
-
         JLabel statusLabel = new JLabel("1",icon,JLabel.CENTER);
         statusLabel.setLocation(0, 0);
-        statusLabel.setSize(200, 60);
+        statusLabel.setSize(1100, 810);
         add(statusLabel);
     }
 
@@ -113,6 +130,8 @@ public class ChessGameFrame extends JFrame {
 
     public void setGameController(GameController gameController) {
         this.controller=gameController;
+        this.addPlayerLabel();
+        this.addLabel();
     }
 
     private void addStorageButton(){
