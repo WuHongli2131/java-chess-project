@@ -62,7 +62,6 @@ public class GameController implements GameListener {
         return false;
     }
 
-
     // click an empty cell
     @Override
     public void onPlayerClickCell(ChessboardPoint point, CellComponent component) {

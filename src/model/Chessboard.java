@@ -154,61 +154,49 @@ public class Chessboard {
         getGridAt(point).setPiece(chessPiece);//将第二个点覆盖到第一个点
     }
 
-    public void moveChessPiece(ChessboardPoint src, ChessboardPoint dest) {
-        if (!this.isValidMove(src, dest)) {
-            throw new IllegalArgumentException("Illegal chess move!");
-        } else {
-            ChessPiece capturedPiece = this.removeChessPiece(dest);
-            ChessPiece movingPiece = this.removeChessPiece(src);
+//
+public void moveChessPiece(ChessboardPoint src, ChessboardPoint dest) {
+    if (!this.isValidMove(src, dest)) {
+        throw new IllegalArgumentException("Illegal chess move!");
+    } else {
+        ChessPiece movingPiece = this.getChessPiece(src);
 
-            if (this.isTrap(dest)) {
-                // Handle moving into a trap
-                if (capturedPiece == null && ((movingPiece.getOwner() == PlayerColor.BLUE && isBlueTrap(dest)) || (movingPiece.getOwner() == PlayerColor.RED && isRedTrap(dest)))) {
-                    this.setChessPiece(dest, movingPiece);
-                } else {
-                    movingPiece.setRank(0);
-                    this.setChessPiece(dest, movingPiece);
-                }
-            } else if (this.isTrap(src)) {
-                // Handle moving out of a trap
-                // Restore the piece's rank
-                movingPiece.restoreRank();
+        if (this.isTrap(dest)) {
+            // Handle moving into a trap
+            if ((movingPiece.getOwner() == PlayerColor.BLUE && isBlueTrap(dest)) || (movingPiece.getOwner() == PlayerColor.RED && isRedTrap(dest))) {
                 this.setChessPiece(dest, movingPiece);
-            }  else if (capturedPiece != null && !ChessboardPoint.isRiver(src) && ChessboardPoint.isRiver(dest)) {
-                // Cannot capture a piece from outside the river when moving into the river
-                return;
-            } else if (movingPiece.getRank() == 6 || movingPiece.getRank() == 7) {
-                // Check if the moving piece is a lion or tiger
-                if (isJumpAcrossRiver(src, dest)) {
-                    if (isRatInInterveningSquares(src, dest)) {
-                        // Jumping move is blocked if a rat is present
-                        return;
-                    } else {
-                        // Perform the jumping move
-                        if (capturedPiece != null && capturedPiece.getRank() <= movingPiece.getRank()) {
-                            // Capture the enemy piece if it has equal or lower rank
-                            this.removeChessPiece(dest);
-                            this.setChessPiece(dest, movingPiece);
-                        } else {
-                            this.setChessPiece(dest, movingPiece);
-                        }
-
-                    }
+            } else {
+                movingPiece.setRank(0);
+                this.setChessPiece(dest, movingPiece);
+            }
+        } else if (this.isTrap(src)) {
+            // Handle moving out of a trap
+            // Restore the piece's rank
+            movingPiece.restoreRank();
+            this.setChessPiece(dest, movingPiece);
+        }  else if ( !ChessboardPoint.isRiver(src) && ChessboardPoint.isRiver(dest)) {
+            this.setChessPiece(dest,movingPiece);
+        } else if (movingPiece.getRank() == 6 || movingPiece.getRank() == 7) {
+            // Check if the moving piece is a lion or tiger
+            if (isJumpAcrossRiver(src, dest)) {
+                if (isRatInInterveningSquares(src, dest)) {
+                    // Jumping move is blocked if a rat is present
+                    return;
                 } else {
-                    this.setChessPiece(dest, movingPiece);
-                }
+                        this.setChessPiece(dest, movingPiece);
+                    }
+
+                }else{
+                this.setChessPiece(dest, movingPiece);
+            }
             } else {
                 this.setChessPiece(dest, movingPiece);
             }
 
-            String step = movingPiece.getName() + " from " + src.toString() + " to " + dest.toString();
-            if (capturedPiece != null) {
-                step = step + " captured " + capturedPiece.getName();
-            }
-
-            this.history.add(step);
-        }
+        String step = movingPiece.getName() + " from " + src.toString() + " to " + dest.toString();
+        this.history.add(step);
     }
+}
 
 
 
@@ -288,7 +276,7 @@ public class Chessboard {
             return false;
         }
 
-        if (isJumpAcrossRiver(src, dest)) {
+        if ((srcPiece.getRank()==6||srcPiece.getRank()==7)&&isJumpAcrossRiver(src, dest)) {
             if (isRatInInterveningSquares(src, dest)) {
                 return false; // If there is a rat in the intervening squares, return false
             }
