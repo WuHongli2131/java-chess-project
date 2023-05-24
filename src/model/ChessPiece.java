@@ -8,14 +8,17 @@ public class ChessPiece {
     private String name;
     private int rank;
     private boolean inRiver;
-
+    private int originalRank;
     public ChessPiece(PlayerColor owner, String name, int rank) {
         this.owner = owner;
         this.name = name;
         this.rank = rank;
+        this.originalRank = rank; // 保存初始rank值
         this.inRiver = false; // 默认情况下，棋子不能进入河流
     }
-
+    public void restoreRank() {
+        rank = originalRank;
+    }
     public boolean canCapture(model.ChessPiece target) {
         int a = this.getRank();
         int b = target.getRank();

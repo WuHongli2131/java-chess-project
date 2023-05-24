@@ -50,7 +50,7 @@ public class ChessboardPoint {
         model.ChessboardPoint temp = (model.ChessboardPoint) obj;
         return (temp.getRow() == this.row) && (temp.getCol() == this.col);
     }
-
+    public static boolean isDen(ChessboardPoint point) {return point.equals(Constant.DEN_RED)||point.equals(Constant.DEN_BLUE);}
     @Override
     public String toString() {
         return "("+row + ","+col+") " + "on the chessboard is clicked!";
