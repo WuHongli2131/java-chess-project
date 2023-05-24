@@ -115,7 +115,9 @@ public class ChessGameFrame extends JFrame {
         this.controller=gameController;
     }
 
-
+    private void addStorageButton(){
+        
+    }
    private void addLoadButton() {//这个类是用来读档的
         JButton button = new JButton("Load");
         button.setLocation(HEIGTH, HEIGTH / 10 + 240);

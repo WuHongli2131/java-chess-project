@@ -68,7 +68,7 @@ public class ChessboardComponent extends JComponent {
 
     public void initiateGridComponents() {
         redLairCell.add(new ChessboardPoint(0,3));
-        blueLairCell.add(new ChessboardPoint(7,3));
+        blueLairCell.add(new ChessboardPoint(8,3));
         redTrapCell.add(new ChessboardPoint(1,3));
         redTrapCell.add(new ChessboardPoint(0,2));
         redTrapCell.add(new ChessboardPoint(0,4));

@@ -173,7 +173,6 @@ public class GameController implements GameListener {
             view.repaint();
         } catch (IOException e) {
             throw new RuntimeException(e);
-
         }
 
 
