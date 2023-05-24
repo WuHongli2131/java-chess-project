@@ -29,10 +29,11 @@ public class Chessboard {
             }
         }
     }
-    public void removeAllPieeces(){
-        for(int i=0;i<Constant.CHESSBOARD_ROW_SIZE.getNum();i++){
-            for(int j=0;j<Constant.CHESSBOARD_COL_SIZE.getNum();j++){
-                if(grid[i][j].getPiece()!=null){
+
+    public void removeAllPieeces() {
+        for (int i = 0; i < Constant.CHESSBOARD_ROW_SIZE.getNum(); i++) {
+            for (int j = 0; j < Constant.CHESSBOARD_COL_SIZE.getNum(); j++) {
+                if (grid[i][j].getPiece() != null) {
                     grid[i][j].setPiece(null);
                 }
             }
@@ -40,63 +41,64 @@ public class Chessboard {
     }
 
     public void initPieces() {
-        grid[0][0].setPiece(new ChessPiece(PlayerColor.BLUE, "Lion",7));
-        grid[8][6].setPiece(new ChessPiece(PlayerColor.RED, "Lion",7));
-        grid[0][6].setPiece(new ChessPiece(PlayerColor.BLUE, "Tiger",6));
-        grid[8][0].setPiece(new ChessPiece(PlayerColor.RED, "Tiger",6));
-        grid[1][1].setPiece(new ChessPiece(PlayerColor.BLUE, "Dog",3));
-        grid[7][5].setPiece(new ChessPiece(PlayerColor.RED, "Dog",3));
-        grid[1][5].setPiece(new ChessPiece(PlayerColor.BLUE, "Cat",2));
-        grid[7][1].setPiece(new ChessPiece(PlayerColor.RED, "Cat",2));
-        grid[2][6].setPiece(new ChessPiece(PlayerColor.BLUE, "Elephant",8));
-        grid[6][0].setPiece(new ChessPiece(PlayerColor.RED, "Elephant",8));
-        grid[2][4].setPiece(new ChessPiece(PlayerColor.BLUE, "Wolf",4));
-        grid[6][2].setPiece(new ChessPiece(PlayerColor.RED, "Wolf",4));
-        grid[2][2].setPiece(new ChessPiece(PlayerColor.BLUE, "Leopard",5));
-        grid[6][4].setPiece(new ChessPiece(PlayerColor.RED, "Leopard",5));
-        grid[2][0].setPiece(new ChessPiece(PlayerColor.BLUE, "Rat",1));
-        grid[6][6].setPiece(new ChessPiece(PlayerColor.RED, "Rat",1));
+        grid[0][0].setPiece(new ChessPiece(PlayerColor.BLUE, "Lion", 7));
+        grid[8][6].setPiece(new ChessPiece(PlayerColor.RED, "Lion", 7));
+        grid[0][6].setPiece(new ChessPiece(PlayerColor.BLUE, "Tiger", 6));
+        grid[8][0].setPiece(new ChessPiece(PlayerColor.RED, "Tiger", 6));
+        grid[1][1].setPiece(new ChessPiece(PlayerColor.BLUE, "Dog", 3));
+        grid[7][5].setPiece(new ChessPiece(PlayerColor.RED, "Dog", 3));
+        grid[1][5].setPiece(new ChessPiece(PlayerColor.BLUE, "Cat", 2));
+        grid[7][1].setPiece(new ChessPiece(PlayerColor.RED, "Cat", 2));
+        grid[2][6].setPiece(new ChessPiece(PlayerColor.BLUE, "Elephant", 8));
+        grid[6][0].setPiece(new ChessPiece(PlayerColor.RED, "Elephant", 8));
+        grid[2][4].setPiece(new ChessPiece(PlayerColor.BLUE, "Wolf", 4));
+        grid[6][2].setPiece(new ChessPiece(PlayerColor.RED, "Wolf", 4));
+        grid[2][2].setPiece(new ChessPiece(PlayerColor.BLUE, "Leopard", 5));
+        grid[6][4].setPiece(new ChessPiece(PlayerColor.RED, "Leopard", 5));
+        grid[2][0].setPiece(new ChessPiece(PlayerColor.BLUE, "Rat", 1));
+        grid[6][6].setPiece(new ChessPiece(PlayerColor.RED, "Rat", 1));
         grid[2][0].getPiece().setInRiver(true);
         grid[6][6].getPiece().setInRiver(true);
         // 设置老鼠可以进入河里
     }
-    public void intiatePieces(List<String> lines){
+
+    public void intiatePieces(List<String> lines) {
         for (int i = 0; i < Constant.CHESSBOARD_ROW_SIZE.getNum(); i++) {
             for (int j = 0; j < Constant.CHESSBOARD_COL_SIZE.getNum(); j++) {
-                if(lines.get(i).charAt(j)=='1'){
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Rat",1));
+                if (lines.get(i).charAt(j) == '1') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Rat", 1));
                     grid[i][j].getPiece().setInRiver(true);
-                } else if (lines.get(i).charAt(j)=='a') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Rat",1));
+                } else if (lines.get(i).charAt(j) == 'a') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Rat", 1));
                     grid[i][j].getPiece().setInRiver(true);
-                } else if (lines.get(i).charAt(j)=='2') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Cat",2));
-                } else if (lines.get(i).charAt(j)=='b') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Cat",2));
-                }else if (lines.get(i).charAt(j)=='3') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Dog",3));
-                } else if (lines.get(i).charAt(j)=='c') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Dog",3));
-                }else if (lines.get(i).charAt(j)=='4') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Wolf",4));
-                } else if (lines.get(i).charAt(j)=='d') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Wolf",4));
-                }else if (lines.get(i).charAt(j)=='5') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Leopard",5));
-                } else if (lines.get(i).charAt(j)=='e') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Leopard",5));
-                }else if (lines.get(i).charAt(j)=='6') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Tiger",6));
-                } else if (lines.get(i).charAt(j)=='f') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Tiger",6));
-                }else if (lines.get(i).charAt(j)=='7') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Lion",7));
-                } else if (lines.get(i).charAt(j)=='g') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Lion",7));
-                }else if (lines.get(i).charAt(j)=='8') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Elephant",8));
-                } else if (lines.get(i).charAt(j)=='h') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Elephant",8));
+                } else if (lines.get(i).charAt(j) == '2') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Cat", 2));
+                } else if (lines.get(i).charAt(j) == 'b') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Cat", 2));
+                } else if (lines.get(i).charAt(j) == '3') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Dog", 3));
+                } else if (lines.get(i).charAt(j) == 'c') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Dog", 3));
+                } else if (lines.get(i).charAt(j) == '4') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Wolf", 4));
+                } else if (lines.get(i).charAt(j) == 'd') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Wolf", 4));
+                } else if (lines.get(i).charAt(j) == '5') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Leopard", 5));
+                } else if (lines.get(i).charAt(j) == 'e') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Leopard", 5));
+                } else if (lines.get(i).charAt(j) == '6') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Tiger", 6));
+                } else if (lines.get(i).charAt(j) == 'f') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Tiger", 6));
+                } else if (lines.get(i).charAt(j) == '7') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Lion", 7));
+                } else if (lines.get(i).charAt(j) == 'g') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Lion", 7));
+                } else if (lines.get(i).charAt(j) == '8') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Elephant", 8));
+                } else if (lines.get(i).charAt(j) == 'h') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Elephant", 8));
                 }
             }
 
@@ -154,51 +156,50 @@ public class Chessboard {
         getGridAt(point).setPiece(chessPiece);//将第二个点覆盖到第一个点
     }
 
-//
-public void moveChessPiece(ChessboardPoint src, ChessboardPoint dest) {
-    if (!this.isValidMove(src, dest)) {
-        throw new IllegalArgumentException("Illegal chess move!");
-    } else {
-        ChessPiece movingPiece = this.getChessPiece(src);
+    //
+    public void moveChessPiece(ChessboardPoint src, ChessboardPoint dest) {
+        if (!this.isValidMove(src, dest)) {
+            throw new IllegalArgumentException("Illegal chess move!");
+        } else {
+            ChessPiece movingPiece = this.getChessPiece(src);
 
-        if (this.isTrap(dest)) {
-            // Handle moving into a trap
-            if ((movingPiece.getOwner() == PlayerColor.BLUE && isBlueTrap(dest)) || (movingPiece.getOwner() == PlayerColor.RED && isRedTrap(dest))) {
-                this.setChessPiece(dest, movingPiece);
-            } else {
-                movingPiece.setRank(0);
-                this.setChessPiece(dest, movingPiece);
-            }
-        } else if (this.isTrap(src)) {
-            // Handle moving out of a trap
-            // Restore the piece's rank
-            movingPiece.restoreRank();
-            this.setChessPiece(dest, movingPiece);
-        }  else if ( !ChessboardPoint.isRiver(src) && ChessboardPoint.isRiver(dest)) {
-            this.setChessPiece(dest,movingPiece);
-        } else if (movingPiece.getRank() == 6 || movingPiece.getRank() == 7) {
-            // Check if the moving piece is a lion or tiger
-            if (isJumpAcrossRiver(src, dest)) {
-                if (isRatInInterveningSquares(src, dest)) {
-                    // Jumping move is blocked if a rat is present
-                    return;
+            if (this.isTrap(dest)) {
+                // Handle moving into a trap
+                if ((movingPiece.getOwner() == PlayerColor.BLUE && isBlueTrap(dest)) || (movingPiece.getOwner() == PlayerColor.RED && isRedTrap(dest))) {
+                    this.setChessPiece(dest, movingPiece);
                 } else {
+                    movingPiece.setRank(0);
+                    this.setChessPiece(dest, movingPiece);
+                }
+            } else if (this.isTrap(src)) {
+                // Handle moving out of a trap
+                // Restore the piece's rank
+                movingPiece.restoreRank();
+                this.setChessPiece(dest, movingPiece);
+            } else if (!ChessboardPoint.isRiver(src) && ChessboardPoint.isRiver(dest)) {
+                this.setChessPiece(dest, movingPiece);
+            } else if (movingPiece.getRank() == 6 || movingPiece.getRank() == 7) {
+                // Check if the moving piece is a lion or tiger
+                if (isJumpAcrossRiver(src, dest)) {
+                    if (isRatInInterveningSquares(src, dest)) {
+                        // Jumping move is blocked if a rat is present
+                        return;
+                    } else {
                         this.setChessPiece(dest, movingPiece);
                     }
 
-                }else{
-                this.setChessPiece(dest, movingPiece);
-            }
+                } else {
+                    this.setChessPiece(dest, movingPiece);
+                }
             } else {
                 this.setChessPiece(dest, movingPiece);
             }
 
-        String step = movingPiece.getName() + " from " + src.toString() + " to " + dest.toString();
-        this.history.add(step);
+            String step = movingPiece.getName() + " from " + src.toString() + " to " + dest.toString();
+            this.history.add(step);
+            removeChessPiece(src);
+        }
     }
-}
-
-
 
 
     public void captureChessPiece(ChessboardPoint src, ChessboardPoint dest) {
@@ -211,7 +212,7 @@ public void moveChessPiece(ChessboardPoint src, ChessboardPoint dest) {
         if (srcPiece.canCapture(destPiece)) {
             removeChessPiece(dest);
             ChessPiece capturedPiece = removeChessPiece(src);
-            setChessPiece(dest, capturedPiece);
+            this.setChessPiece(dest, capturedPiece);
             String step = srcPiece.getName() + " from " + src.toString() + " captured " + destPiece.getName() + " at " + dest.toString();
             history.add(step);
         } else {
@@ -221,13 +222,14 @@ public void moveChessPiece(ChessboardPoint src, ChessboardPoint dest) {
     }
 
 
-
     public Cell[][] getGrid() {
         return grid;
     }
+
     public PlayerColor getChessPieceOwner(ChessboardPoint point) {
         return getGridAt(point).getPiece().getOwner();
     }
+
     public ChessPiece getChessPiece(ChessboardPoint point) {
         return getGridAt(point).getPiece();
     }
@@ -276,7 +278,7 @@ public void moveChessPiece(ChessboardPoint src, ChessboardPoint dest) {
             return false;
         }
 
-        if ((srcPiece.getRank()==6||srcPiece.getRank()==7)&&isJumpAcrossRiver(src, dest)) {
+        if ((srcPiece.getRank() == 6 || srcPiece.getRank() == 7) && isJumpAcrossRiver(src, dest)) {
             if (isRatInInterveningSquares(src, dest)) {
                 return false; // If there is a rat in the intervening squares, return false
             }
@@ -285,18 +287,28 @@ public void moveChessPiece(ChessboardPoint src, ChessboardPoint dest) {
 
         return calculateDistance(src, dest) == 1;
     }
+
     private boolean isBlueDen(ChessboardPoint point) {
         return point.equals(Constant.DEN_BLUE);
     }
+
     private boolean isRedDen(ChessboardPoint point) {
-        return point.equals(Constant.DEN_RED);}
+        return point.equals(Constant.DEN_RED);
+    }
 
     private boolean isTrap(ChessboardPoint point) {
         return point.equals(Constant.TRAP_BLUE_1) || point.equals(Constant.TRAP_BLUE_2) || point.equals(Constant.TRAP_BLUE_3) ||
                 point.equals(Constant.TRAP_RED_1) || point.equals(Constant.TRAP_RED_2) || point.equals(Constant.TRAP_RED_3);
     }
-    private boolean isBlueTrap(ChessboardPoint point) {  return point.equals(Constant.TRAP_BLUE_1) || point.equals(Constant.TRAP_BLUE_2) || point.equals(Constant.TRAP_BLUE_3);}
-    private boolean isRedTrap(ChessboardPoint point) {  return  point.equals(Constant.TRAP_RED_1) || point.equals(Constant.TRAP_RED_2) || point.equals(Constant.TRAP_RED_3);}
+
+    private boolean isBlueTrap(ChessboardPoint point) {
+        return point.equals(Constant.TRAP_BLUE_1) || point.equals(Constant.TRAP_BLUE_2) || point.equals(Constant.TRAP_BLUE_3);
+    }
+
+    private boolean isRedTrap(ChessboardPoint point) {
+        return point.equals(Constant.TRAP_RED_1) || point.equals(Constant.TRAP_RED_2) || point.equals(Constant.TRAP_RED_3);
+    }
+
     private boolean isRatInInterveningSquares(ChessboardPoint src, ChessboardPoint dest) {
         int srcRow = src.getRow();
         int srcCol = src.getCol();
@@ -328,6 +340,7 @@ public void moveChessPiece(ChessboardPoint src, ChessboardPoint dest) {
 
         return false; // No rat found in intervening squares
     }
+
     private boolean isJumpAcrossRiver(ChessboardPoint src, ChessboardPoint dest) {
         int srcRow = src.getRow();
         int srcCol = src.getCol();
@@ -350,7 +363,7 @@ public void moveChessPiece(ChessboardPoint src, ChessboardPoint dest) {
             int endCol = Math.max(srcCol, destCol);
 
             // Check if the move crosses the river and the distance is 2
-            if ((srcRow == 3 || srcRow == 4 || srcRow == 5) &&( (startCol == 0 && endCol == 3)||(startCol == 3 && endCol == 6) )&& Math.abs(destCol - srcCol) == 3) {
+            if ((srcRow == 3 || srcRow == 4 || srcRow == 5) && ((startCol == 0 && endCol == 3) || (startCol == 3 && endCol == 6)) && Math.abs(destCol - srcCol) == 3) {
                 return true; // Jumping across the river horizontally
             }
         }
