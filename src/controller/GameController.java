@@ -187,8 +187,29 @@ public class GameController implements GameListener {
     public void loadGameFromFile(String path) {
         try {
             List<String> loading = Files.readAllLines(Path.of(path));
+            if(loading.size()!=10){
+                throw new RuntimeException("102");
+            }
+            for(int i=0;i<9;i++) {
+                if (loading.get(i).length() != 7) {
+                    throw new RuntimeException("102");
+                }
+            }
+            if(loading.get(9)==null){
+                throw new RuntimeException("104");
+            }
+            int j;
+
             for (String s : loading) {
-                System.out.println(s);
+                for(j=0;j<7;j++){
+                    if(s.contains("9")||s.contains("i")||s.contains("j")||s.contains("k")||
+                            s.contains("l")||s.contains("m")||s.contains("n")||s.contains("o")||
+                            s.contains("p")||s.contains("q")||s.contains("r")||s.contains("s")||
+                            s.contains("t")||s.contains("u")||s.contains("v")||s.contains("w")||
+                            s.contains("x")||s.contains("y")||s.contains("z")){
+                        throw new RuntimeException("103");
+                    }
+                }
             }
             String a=loading.get(9);
             int b=Integer.parseInt(a);
