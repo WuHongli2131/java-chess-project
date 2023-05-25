@@ -59,16 +59,16 @@ public class GameController implements GameListener {
     private void swapColor() {
         currentPlayer = currentPlayer == PlayerColor.BLUE ? PlayerColor.RED : PlayerColor.BLUE;
         this.turn+=1;
-        System.out.println(turn);
        ChessGameFrame.turnlabel.setText("Jungle Chess Turn:"+ (this.turn/2+1));
         if(this.turn%2==1) {
-            ChessGameFrame.colorlabel.setText("Red Turn");
+            ChessGameFrame.colorlabel.setText("Blue Turn");
         }else{
-           ChessGameFrame.colorlabel.setText("Blue Turn");
+           ChessGameFrame.colorlabel.setText("Red Turn");
         }
         ChessGameFrame.colorlabel.repaint();
         ChessGameFrame.turnlabel.repaint();
     }
+
 
     private boolean win() {
         // TODO: Check the board if there is a winner
@@ -166,6 +166,16 @@ public class GameController implements GameListener {
     }
 
     public void restartGame() {
+        this.turn=0;
+        ChessGameFrame.turnlabel.setText("Jungle Chess Turn:"+ (this.turn/2+1));
+        if(this.turn%2==1) {
+            ChessGameFrame.colorlabel.setText("Red Turn");
+        }else{
+            ChessGameFrame.colorlabel.setText("Blue Turn");
+        }
+        this.currentPlayer=PlayerColor.BLUE;
+        ChessGameFrame.colorlabel.repaint();
+        ChessGameFrame.turnlabel.repaint();
         model.removeAllPieces();
         model.initPieces();
         selectedPoint = null;
@@ -180,14 +190,22 @@ public class GameController implements GameListener {
             for (String s : loading) {
                 System.out.println(s);
             }
+            String a=loading.get(9);
+            int b=Integer.parseInt(a);
+            this.turn =b-2;
             model.removeAllPieces();
             model.intiatePieces(loading);
+            swapColor();
+            swapColor();
             view.removeAllPieces();
             view.initiateChessComponent(model);
             view.repaint();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void readGameToFile(String name){
+        Cell[][] save= model.getGrid();
 
 
     }

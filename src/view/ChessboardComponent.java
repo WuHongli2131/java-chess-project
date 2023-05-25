@@ -49,7 +49,7 @@ public class ChessboardComponent extends JComponent {
      */
     public void initiateChessComponent(Chessboard chessboard) {
         Cell[][] grid = chessboard.getGrid();
-        for (int i = 0; i < CHESSBOARD_ROW_SIZE.getNum(); i++) {
+        for (int i = 0; i < CHESSBOARD_ROW_SIZE.getNum()-1; i++) {
             for (int j = 0; j < CHESSBOARD_COL_SIZE.getNum(); j++) {
                 // TODO: Implement the initialization checkerboard
 
@@ -63,7 +63,6 @@ public class ChessboardComponent extends JComponent {
                 }
             }
         }
-
     }
 
     public void initiateGridComponents() {

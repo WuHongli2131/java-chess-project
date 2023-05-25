@@ -32,13 +32,11 @@ public class ChessGameFrame extends JFrame {
         setLocationRelativeTo(null); // Center the window.
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //设置程序关闭按键，如果点击右上方的叉就游戏全部关闭了
         setLayout(null);
-        ImageIcon img=new ImageIcon("C:\\Users\\explorer\\Desktop\\新建文件夹\\R-C(3).jpg");
-        JLabel label = new JLabel(img);
-        label.setBounds(0, 0, width, height);
         addChessboard();
         addHelloButton();
         addsingleButton();
         addLoadButton();
+        addStorageButton();
     }
 
     public ChessboardComponent getChessboardComponent() {
@@ -73,12 +71,12 @@ public class ChessGameFrame extends JFrame {
 
 
 
-       private void addPlayerLabel() {//有bug
+       private void addPlayerLabel() {
         colorlabel = new JLabel();
         if(this.controller.turn%2==1) {
-            colorlabel = new JLabel("Blue Turn" );
-        }else{
             colorlabel = new JLabel("Red Turn" );
+        }else{
+            colorlabel = new JLabel("Blue Turn" );
         }
             colorlabel.setLocation(HEIGTH, HEIGTH / 10 - 60);
             colorlabel.setSize(200, 60);
@@ -122,7 +120,7 @@ public class ChessGameFrame extends JFrame {
     private void addHelloButton() {
         JButton button = new JButton("Music");
         button.addActionListener((e) -> JOptionPane.showMessageDialog(this, "Hello, world!"));
-        button.setLocation(HEIGTH, HEIGTH / 10 + 360);
+        button.setLocation(HEIGTH, HEIGTH / 10 + 480);
         button.setSize(200, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
         add(button);
@@ -135,7 +133,18 @@ public class ChessGameFrame extends JFrame {
     }
 
     private void addStorageButton(){
-        
+        JButton button = new JButton("Save");
+        button.setLocation(HEIGTH, HEIGTH / 10 + 360);
+        button.setSize(200, 60);
+        button.setFont(new Font("Rockwell", Font.BOLD, 20));
+        add(button);
+
+        button.addActionListener(e -> {
+            System.out.println("Click load");
+            String name = JOptionPane.showInputDialog(this,"Input Filename here");
+            System.out.println(name);
+            controller.readGameToFile(name);
+        });
     }
    private void addLoadButton() {//这个类是用来读档的
         JButton button = new JButton("Load");
