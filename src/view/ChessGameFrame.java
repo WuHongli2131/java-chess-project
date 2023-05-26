@@ -141,7 +141,7 @@ public class ChessGameFrame extends JFrame {
 
         button.addActionListener(e -> {
             System.out.println("Click load");
-            String name = JOptionPane.showInputDialog(this,"Input Filename here");
+            String name = JOptionPane.showInputDialog(this,"Input txtFilename here");
             System.out.println(name);
             controller.readGameToFile(name);
         });

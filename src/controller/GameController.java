@@ -3,6 +3,7 @@ package controller;
 import java.awt.*;
 import java.io.*;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.AbstractSet;
@@ -243,8 +244,65 @@ public class GameController implements GameListener {
 
         return extension;
     }
-    public void readGameToFile(String name){
-        Cell[][] save= model.getGrid();
+    public void readGameToFile(String filename){
+        try {
+            int t=turn;
+            Cell[][] save = model.getGrid();
+            File file = new File(filename);
+            FileWriter fileWriter=new FileWriter(filename,true);
+            for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 7; j++) {
+                    if (save[i][j].getPiece() != null) {
+                        if (save[i][j].getPiece().getOwner() == PlayerColor.BLUE) {
+                            switch (save[i][j].getPiece().getRank()) {
+                                case 1:fileWriter.write("1");
+                                    break;
+                                case 2:fileWriter.write("2");
+                                    break;
+                                case 3:fileWriter.write("3");
+                                    break;
+                                case 4:fileWriter.write("4");
+                                    break;
+                                case 5:fileWriter.write("5");
+                                    break;
+                                case 6:fileWriter.write("6");
+                                    break;
+                                case 7:fileWriter.write("7");
+                                    break;
+                                case 8:fileWriter.write("8");
+                                    break;
+                            }
 
+                        } else if (save[i][j].getPiece().getOwner() == PlayerColor.RED) {
+                            switch (save[i][j].getPiece().getRank()) {
+                                case 1:fileWriter.write("a");
+                                    break;
+                                case 2:fileWriter.write("b");
+                                    break;
+                                case 3:fileWriter.write("c");
+                                    break;
+                                case 4:fileWriter.write("d");
+                                    break;
+                                case 5:fileWriter.write("e");
+                                    break;
+                                case 6:fileWriter.write("f");
+                                    break;
+                                case 7:fileWriter.write("g");
+                                    break;
+                                case 8:fileWriter.write("h");
+                                    break;
+                            }
+                        }
+                    }else{
+                        fileWriter.write(0);
+                    }
+                }
+                fileWriter.write("\n");
+            }
+            fileWriter.write(t);
+            fileWriter.close();
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
     }
 }
