@@ -5,8 +5,11 @@ import model.Chessboard;
 import model.Constant;
 import model.PlayerColor;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 
 /**
@@ -34,6 +37,7 @@ public class ChessGameFrame extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //设置程序关闭按键，如果点击右上方的叉就游戏全部关闭了
         setLayout(null);
         addChessboard();
+        addHelloButton();
         addsingleButton();
         addLoadButton();
         addStorageButton();
@@ -124,11 +128,32 @@ public class ChessGameFrame extends JFrame {
 
     private void addHelloButton() {
         JButton button = new JButton("Music");
-        button.addActionListener((e) -> JOptionPane.showMessageDialog(this, "Hello, world!"));
+        final AudioInputStream[] audioInputStream = new AudioInputStream[1];
+        button.addActionListener((e) -> {
+            try {
+                File audioFile = new File("C:\\Users\\explorer\\Documents\\GitHub\\java-chess-project\\src\\file.wav");
+                audioInputStream[0] = AudioSystem.getAudioInputStream(audioFile);
+                AudioFormat format = audioInputStream[0].getFormat();
+
+                // Create data line for playback
+                DataLine.Info info = new DataLine.Info(Clip.class, format);
+                Clip clip = (Clip) AudioSystem.getLine(info);
+
+                // Open audio stream and start playback
+                clip.open(audioInputStream[0]);
+                clip.start();
+            }catch (IOException ex) {
+                ex.printStackTrace();
+            } catch (LineUnavailableException ex) {
+                ex.printStackTrace();
+            } catch (UnsupportedAudioFileException ex) {
+                ex.printStackTrace();
+            }});
         button.setLocation(HEIGTH, HEIGTH / 10 + 480);
         button.setSize(200, 60);
         button.setFont(new Font("Rockwell", Font.BOLD, 20));
         add(button);
+
     }
 
     public void setGameController(GameController gameController) {
