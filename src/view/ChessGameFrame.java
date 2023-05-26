@@ -7,6 +7,7 @@ import model.PlayerColor;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 
 /**
  * 这个类表示游戏过程中的整个游戏界面，是一切的载体
@@ -83,11 +84,16 @@ public class ChessGameFrame extends JFrame {
             add(colorlabel);
     }
     private void addBackGroundLabel() {
-        Icon icon=new ImageIcon("view/img.jpg");
-        JLabel statusLabel = new JLabel("1",icon,JLabel.CENTER);
-        statusLabel.setLocation(0, 0);
-        statusLabel.setSize(1100, 810);
-        add(statusLabel);
+        JLabel jl=new JLabel(" ");
+        URL url =ChessGameFrame.class.getResource("img.jpg");
+        Icon icon =new ImageIcon(url);
+        jl.setIcon(icon);
+        jl.setHorizontalAlignment(SwingConstants.CENTER);
+        jl.setOpaque(true);
+        this.add(jl);
+        setSize(1100, 810);
+        setVisible(true);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
 

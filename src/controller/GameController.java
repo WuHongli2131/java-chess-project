@@ -63,9 +63,9 @@ public class GameController implements GameListener {
         this.turn+=1;
        ChessGameFrame.turnlabel.setText("Jungle Chess Turn:"+ (this.turn/2+1));
         if(this.turn%2==1) {
-            ChessGameFrame.colorlabel.setText("Blue Turn");
+            ChessGameFrame.colorlabel.setText("Red Turn");
         }else{
-           ChessGameFrame.colorlabel.setText("Red Turn");
+           ChessGameFrame.colorlabel.setText("Blue Turn");
         }
         ChessGameFrame.colorlabel.repaint();
         ChessGameFrame.turnlabel.repaint();
