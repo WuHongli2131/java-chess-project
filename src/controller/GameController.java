@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.*;
+import java.io.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -186,6 +187,12 @@ public class GameController implements GameListener {
 
     public void loadGameFromFile(String path) {
         try {
+            String fileName=path;
+            File file=new File(fileName);
+            String extension=getFileExtension(file);
+            if(!extension.equals("txt")){
+                throw new RuntimeException("101");
+            }
             List<String> loading = Files.readAllLines(Path.of(path));
             if(loading.size()!=10){
                 throw new RuntimeException("102");
@@ -225,9 +232,19 @@ public class GameController implements GameListener {
             throw new RuntimeException(e);
         }
     }
+    private static String getFileExtension(File file) {
+        String extension = null;
+        String fileName = file.getName();
+        int dotIndex = fileName.lastIndexOf(".");
+
+        if (dotIndex > 0 && dotIndex < fileName.length() - 1) {
+            extension = fileName.substring(dotIndex + 1);
+        }
+
+        return extension;
+    }
     public void readGameToFile(String name){
         Cell[][] save= model.getGrid();
-
 
     }
 }
