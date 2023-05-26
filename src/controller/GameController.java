@@ -248,7 +248,7 @@ public class GameController implements GameListener {
         try {
             int t=turn;
             Cell[][] save = model.getGrid();
-            File file = new File(filename);
+            File file = new File("C:\\path\\to\\temp\\"+filename);
             FileWriter fileWriter=new FileWriter(filename,true);
             for (int i = 0; i < 9; i++) {
                 for (int j = 0; j < 7; j++) {
@@ -294,12 +294,12 @@ public class GameController implements GameListener {
                             }
                         }
                     }else{
-                        fileWriter.write(0);
+                        fileWriter.write("0");
                     }
                 }
                 fileWriter.write("\n");
             }
-            fileWriter.write(t);
+            fileWriter.write(String.format("%d",t));
             fileWriter.close();
         }catch(IOException e){
             System.out.println(e.getMessage());
