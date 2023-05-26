@@ -158,6 +158,7 @@ public class Chessboard {
         getGridAt(point).setPiece(chessPiece);//将第二个点覆盖到第一个点
     }
 
+
     //
     public void moveChessPiece(ChessboardPoint src, ChessboardPoint dest) {
         if (!this.isValidMove(src, dest)) {
