@@ -195,6 +195,9 @@ public class GameController implements GameListener {
                 throw new RuntimeException("101");
             }
             List<String> loading = Files.readAllLines(Path.of(path));
+            if(loading.size()==9){
+                throw new RuntimeException("104");
+            }
             if(loading.size()!=10){
                 throw new RuntimeException("102");
             }
@@ -203,9 +206,7 @@ public class GameController implements GameListener {
                     throw new RuntimeException("102");
                 }
             }
-            if(loading.get(9)==null){
-                throw new RuntimeException("104");
-            }
+
             int j;
 
             for (String s : loading) {
