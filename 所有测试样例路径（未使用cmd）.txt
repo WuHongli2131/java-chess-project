@@ -1,3 +1,6 @@
+“学长，
+   我们绝对没用cmd，
+    我们已经把这些代码记下来了。”
 
 "C:\Users\explorer\Documents\GitHub\java-chess-project\104少行棋方错误测试.txt"
 "C:\Users\explorer\Documents\GitHub\java-chess-project\101报错测试.json"
@@ -8,3 +11,7 @@
 "C:\Users\explorer\Documents\GitHub\java-chess-project\狮虎跳河测试.txt"
 "C:\Users\explorer\Documents\GitHub\java-chess-project\食物链测试.txt"
 "C:\Users\explorer\Documents\GitHub\java-chess-project\陷阱测试.txt"
+
+
+
+

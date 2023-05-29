@@ -7,6 +7,7 @@ import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.AbstractSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import listener.GameListener;
@@ -208,6 +209,33 @@ public class GameController implements GameListener {
             }
 
             int j;
+            List<String> ab=new ArrayList<>();
+            ab.add("0");
+            ab.add("1");
+            ab.add("2");
+            ab.add("3");
+            ab.add("4");
+            ab.add("5");
+            ab.add("6");
+            ab.add("7");
+            ab.add("8");
+            ab.add("a");
+            ab.add("b");
+            ab.add("c");
+            ab.add("d");
+            ab.add("e");
+            ab.add("f");
+            ab.add("g");
+            ab.add("h");
+            for (String s : loading) {
+                for(j=0;j<7;j++){
+                    String b=s.substring(j);
+                   if(!ab.contains(b)){
+                       throw new RuntimeException("103");
+                   }
+                    }
+                }
+
 
             for (String s : loading) {
                 for(j=0;j<7;j++){
