@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="LovejavaForever">
-    <output-path>$PROJECT_DIR$/out/artifacts/LovejavaForever</output-path>
-    <root id="archive" name="LovejavaForever.jar">
+  <artifact type="javafx" name="LovejavaForever">
+    <output-path>$PROJECT_DIR$</output-path>
+    <root id="root">
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
       </element>

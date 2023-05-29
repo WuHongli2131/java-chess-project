@@ -13,5 +13,4 @@
 "C:\Users\explorer\Documents\GitHub\java-chess-project\陷阱测试.txt"
 
 
-
-
+C:\Users\86158\Desktop\java-chess-project\

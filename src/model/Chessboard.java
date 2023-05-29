@@ -68,39 +68,39 @@ public class Chessboard {
         for (int i = 0; i < Constant.CHESSBOARD_ROW_SIZE.getNum(); i++) {
             for (int j = 0; j < Constant.CHESSBOARD_COL_SIZE.getNum(); j++) {
                 if (lines.get(i).charAt(j) == '1') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Rat", 1));
-                    grid[i][j].getPiece().setInRiver(true);
-                } else if (lines.get(i).charAt(j) == 'a') {
                     grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Rat", 1));
                     grid[i][j].getPiece().setInRiver(true);
+                } else if (lines.get(i).charAt(j) == 'a') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Rat", 1));
+                    grid[i][j].getPiece().setInRiver(true);
                 } else if (lines.get(i).charAt(j) == '2') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Cat", 2));
-                } else if (lines.get(i).charAt(j) == 'b') {
                     grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Cat", 2));
+                } else if (lines.get(i).charAt(j) == 'b') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Cat", 2));
                 } else if (lines.get(i).charAt(j) == '3') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Dog", 3));
-                } else if (lines.get(i).charAt(j) == 'c') {
                     grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Dog", 3));
+                } else if (lines.get(i).charAt(j) == 'c') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Dog", 3));
                 } else if (lines.get(i).charAt(j) == '4') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Wolf", 4));
-                } else if (lines.get(i).charAt(j) == 'd') {
                     grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Wolf", 4));
+                } else if (lines.get(i).charAt(j) == 'd') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Wolf", 4));
                 } else if (lines.get(i).charAt(j) == '5') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Leopard", 5));
-                } else if (lines.get(i).charAt(j) == 'e') {
                     grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Leopard", 5));
+                } else if (lines.get(i).charAt(j) == 'e') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Leopard", 5));
                 } else if (lines.get(i).charAt(j) == '6') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Tiger", 6));
-                } else if (lines.get(i).charAt(j) == 'f') {
                     grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Tiger", 6));
+                } else if (lines.get(i).charAt(j) == 'f') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Tiger", 6));
                 } else if (lines.get(i).charAt(j) == '7') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Lion", 7));
-                } else if (lines.get(i).charAt(j) == 'g') {
                     grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Lion", 7));
+                } else if (lines.get(i).charAt(j) == 'g') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Lion", 7));
                 } else if (lines.get(i).charAt(j) == '8') {
-                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Elephant", 8));
-                } else if (lines.get(i).charAt(j) == 'h') {
                     grid[i][j].setPiece(new ChessPiece(PlayerColor.BLUE, "Elephant", 8));
+                } else if (lines.get(i).charAt(j) == 'h') {
+                    grid[i][j].setPiece(new ChessPiece(PlayerColor.RED, "Elephant", 8));
                 }
             }
 
